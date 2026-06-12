@@ -1,19 +1,21 @@
 package redsocialprofesional;
 
-public interface IGrafoRed <Object>{
-    void insertarVertice(Object vertice);
+public interface IGrafoRed{
+    void insertarVertice(Usuario vertice);
 
-    void eliminarVertice(Object vertice);
+    void eliminarVertice(Usuario vertice);
 
-    void insertarArista(Object origen, Object destino);
+    void insertarArista(Usuario origen, Usuario destino);
 
-    void eliminarArista(Object origen, Object destino);
+    void eliminarArista(Usuario origen, Usuario destino);
 
-    boolean existeVertice(Object vertice);
+    boolean existeVertice(Usuario vertice);
 
-    boolean existeArista(Object origen, Object destino);
+    boolean existeArista(Usuario origen, Usuario destino);
 
     void mostrarMatriz();
 
     void mostrarVertices();
+
+    void mostrarContactos(Usuario usuario);
 }

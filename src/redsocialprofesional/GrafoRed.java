@@ -1,7 +1,7 @@
 package redsocialprofesional;
 
-public class GrafoRed<Object> implements IGrafoRed<Object> {
-    private Object[] vertices;
+public class GrafoRed implements IGrafoRed {
+    private Usuario[] vertices;
     private int[][] matriz;
     private int cantidad;
     private int capacidad;
@@ -14,12 +14,12 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
         this.dirigido = dirigido;
         this.cantidad = 0;
 
-        this.vertices = (Object[]) new Object[capacidad];
+        this.vertices = new Usuario[capacidad];
         this.matriz = new int[capacidad][capacidad];
     }
 
     @Override
-    public void insertarVertice(Object vertice) {
+    public void insertarVertice(Usuario vertice) {
         if (cantidad == capacidad) {
             System.out.println("No se pueden insertar más vértices.");
             return;
@@ -35,11 +35,11 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
     }
 
     @Override
-    public boolean existeVertice(Object vertice) {
+    public boolean existeVertice(Usuario vertice) {
         return obtenerIndice(vertice) != -1;
     }
 
-    private int obtenerIndice(Object vertice) {
+    private int obtenerIndice(Usuario vertice) {
         for (int i = 0; i < cantidad; i++) {
             if (vertices[i].equals(vertice)) {
                 return i;
@@ -49,7 +49,7 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
     }
 
     @Override
-    public void insertarArista(Object origen, Object destino) {
+    public void insertarArista(Usuario origen, Usuario destino) {
         int posOrigen = obtenerIndice(origen);
         int posDestino = obtenerIndice(destino);
 
@@ -66,7 +66,7 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
     }
 
     @Override
-    public void eliminarArista(Object origen, Object destino) {
+    public void eliminarArista(Usuario origen, Usuario destino) {
         int posOrigen = obtenerIndice(origen);
         int posDestino = obtenerIndice(destino);
 
@@ -83,7 +83,7 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
     }
 
     @Override
-    public boolean existeArista(Object origen, Object destino) {
+    public boolean existeArista(Usuario origen, Usuario destino) {
         int posOrigen = obtenerIndice(origen);
         int posDestino = obtenerIndice(destino);
 
@@ -95,7 +95,7 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
     }
 
     @Override
-    public void eliminarVertice(Object vertice) {
+    public void eliminarVertice(Usuario vertice) {
         int pos = obtenerIndice(vertice);
 
         if (pos == -1) {
@@ -163,5 +163,25 @@ public class GrafoRed<Object> implements IGrafoRed<Object> {
 
             System.out.println();
         }
+    }
+
+    @Override
+    public void mostrarContactos(Usuario usuario) {
+        int pos = obtenerIndice(usuario);
+
+        if (pos == -1) {
+            System.out.println("El usuario no existe.");
+            return;
+        }
+
+        System.out.print("Contactos de " + usuario.getNombre() + ": ");
+
+        for (int i = 0; i < cantidad; i++) {
+            if (matriz[pos][i] == 1) {
+                System.out.print(vertices[i].getNombre() + " ");
+            }
+        }
+
+        System.out.println();
     }
 }
