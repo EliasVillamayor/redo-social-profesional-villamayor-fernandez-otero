@@ -22,7 +22,7 @@ implementaciones: Manuel Otero: - Implementación de las clases Usuario
                   Agustin Fernandez: - Desarrollo del main
                                      - Testeo y pruebas
                                                   
-Link del repositorio: https://github.com/EliasVillamayor/redo-social-profesional-villamayor-fernandez-otero
+Link del repositorio: https://github.com/EliasVillamayor/red-social-profesional-villamayor-fernandez-otero
 
 
               
